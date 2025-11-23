@@ -1,0 +1,21 @@
+ :root { font-family: Inter, Arial, sans-serif; --card:#ffffff; --bg:#f4f6f8; --accent:#1f7a5f; --danger:#d9534f; }
+body { margin:0; background:var(--bg); display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
+.card { width:100%; max-width:900px; background:var(--card); border-radius:12px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,0.08); }
+h1 { margin:0 0 12px 0; font-size:20px; color:#222; }
+.row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+label{font-size:13px;color:#333;margin-bottom:6px;display:block;}
+input[type="number"], input[type="text"], input[type="date"]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;font-size:16px;}
+.col{flex:1;min-width:180px;}
+.actions{display:flex;gap:10px;align-items:center;margin-top:10px;}
+button{padding:10px 16px;border-radius:8px;border:0;font-weight:600;cursor:pointer;}
+.btn-calc{background:var(--accent); color:white;}
+.btn-save{background:#2d6cdf;color:white;}
+.btn-clear{background:transparent;border:1px solid #ccc;}
+.btn-pdf{background:#6a2f9a;color:white;}
+.result{margin-top:14px;padding:12px;border-radius:8px;background:#fbfdff;border:1px solid #eef5f7;}
+.small{font-size:13px;color:#666;margin-top:6px;}
+.summary{margin-top:16px;}
+.message{margin-top:10px;font-size:14px;color:green;}
+@media (max-width:480px){ .row{flex-direction:column;} }
+.monthly-list { max-height:200px; overflow:auto; border:1px solid #eef; border-radius:8px; padding:8px; margin-top:8px; background:#fff;}
+.monthly-item{display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #f1f5f8;}
