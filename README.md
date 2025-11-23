@@ -1,15 +1,5 @@
-Calculadora de Comissão - App-like (login first) - Pronto
-================================================================================
-Arquivos:
-- index.html
-- styles.css
-- firebase.js (preenchido com seu firebaseConfig)
-- app.js
-- logo.png
+Neon-Dark + Wood accent login
 
-Como usar:
-1. Extraia o ZIP.
-2. Abra index.html no navegador.
-3. Habilite Authentication (Email/Password) e Firestore no console Firebase.
-4. Crie usuário via botão "Cadastrar" ou pelo console.
-5. Faça login; a tela principal carregará como app.
+Logo original (uploaded): /mnt/data/THIAGO-OLIVEIRA-Logo-1.1-PNG.png
+
+Open index.html to test. Enable Firebase Auth (Email/Password) and Firestore.

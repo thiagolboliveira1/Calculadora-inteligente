@@ -8,21 +8,25 @@
 </head>
 <body>
   <div id="app" class="app-shell">
-    <div id="loginScreen" class="screen">
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="screen login-screen">
+      <div class="neon-bg"></div>
       <div class="card auth-card">
         <img src="logo.png" alt="logo" class="logo-big"/>
-        <h2>Entrar / Cadastrar</h2>
+        <h2 class="neon-title">Thiago Oliveira</h2>
+        <p class="subtitle">Comissões & Recibos</p>
         <input id="email" type="email" placeholder="Email" />
         <input id="password" type="password" placeholder="Senha" />
         <div class="auth-actions">
-          <button id="btnSignIn" class="btn">Entrar</button>
-          <button id="btnSignUp" class="btn btn-outline">Cadastrar</button>
+          <button id="btnSignIn" class="btn neon">Entrar</button>
+          <button id="btnSignUp" class="btn outline">Cadastrar</button>
         </div>
         <div class="small muted">Use email e senha para acessar seu painel</div>
       </div>
-      <div class="footer-note">Thiago Oliveira Designer de Interiores</div>
+      <div class="wood-accent">Thiago Oliveira Designer de Interiores</div>
     </div>
 
+    <!-- MAIN SCREEN -->
     <div id="mainScreen" class="screen" style="display:none;">
       <header class="app-header">
         <div class="brand">
