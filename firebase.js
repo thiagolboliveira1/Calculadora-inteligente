@@ -1,6 +1,7 @@
 // firebase.js
 export let firebaseEnabled = false;
 export let db = null;
+export let auth = null;
 
 const firebaseConfig = {
   apiKey: "SUA_API_KEY",
@@ -14,10 +15,12 @@ const firebaseConfig = {
 async function init() {
   try {
     if (firebaseConfig && firebaseConfig.projectId && firebaseConfig.apiKey && firebaseConfig.appId) {
-      const mod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js');
-      const fb = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js');
-      mod.initializeApp(firebaseConfig);
-      db = fb.getFirestore();
+      const appMod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js');
+      const fbAuth = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js');
+      const fbStore = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js');
+      const app = appMod.initializeApp(firebaseConfig);
+      auth = fbAuth.getAuth(app);
+      db = fbStore.getFirestore(app);
       firebaseEnabled = true;
       console.log('Firebase inicializado.');
     } else {
@@ -30,4 +33,5 @@ async function init() {
 init();
 
 export function getDb() { return db; }
+export function getAuthInstance() { return auth; }
 export function isFirebaseEnabled() { return firebaseEnabled; }

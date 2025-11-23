@@ -1,24 +1,41 @@
-Calculadora de Comissão - Recebimento/Recibo
+Calculadora de Comissão - Recebimento/Recibo (Auth + Logo embedded)
 ================================================================================
 
-Alterações nesta versão:
-- Inserida logo (arquivo logo.png) que será incluída no recibo PDF.
-- PDF gerado com layout de recibo/nota, com cabeçalho, histórico e área para assinatura.
-- Salvamento idempotente: cada formulário gera um `clientId` único e o app verifica no Firestore se já existe um documento com o mesmo `clientId` antes de inserir — assim evita duplicatas caso você clique duas vezes.
-
-Arquivos:
+O pacote contém:
 - index.html
 - styles.css
-- firebase.js
+- firebase.js (preencha seu firebaseConfig)
 - app.js
-- logo.png  (sua logo fornecida)
+- logo.png (cópia da sua logo)
 - README.md
+
+Principais mudanças:
+- Logo embutida como base64 no app para garantir que apareça no PDF mesmo em ambiente local.
+- Layout do recibo ajustado: cor, tipografia, posição da logo e caixa de informações destacada.
+- Firebase Authentication obrigatório para salvar no Firestore. Você deve criar usuários no console Firebase (Authentication -> Email/Password) ou implementar cadastro adicional.
+- Ao salvar, o documento registra `userId` e `userEmail` para separar dados por usuário.
+- Salvamento idempotente por `clientId` + `userId` para evitar duplicação.
 
 Como usar:
 1. Extraia o ZIP.
 2. Abra index.html no navegador.
-3. Preencha `firebase.js` com seu firebaseConfig para habilitar salvar/consultar. Sem Firebase, PDF funciona normalmente.
-4. Para evitar salvar em duplicidade:
-   - O app gera um clientId para cada formulário/calculo.
-   - Antes de inserir, ele verifica se já existe um documento com esse clientId.
-   - Após salvar com sucesso, o botão de salvar é desabilitado até você alterar os campos (gera novo clientId).
+3. Em `firebase.js` preencha o objeto `firebaseConfig` do seu projeto e publique/acesse Firestore e Auth.
+4. Crie um usuário no Firebase Auth (email/senha) pelo console ou implemente fluxo de registro.
+5. Entrar com o usuário antes de salvar.
+6. Gerar recibo em PDF com o botão "Exportar PDF (Recibo)".
+
+Firestore Rules recomendadas (exemplo mínimo):
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /commissions/{docId} {
+      allow read, write: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+  }
+}
+
+Se quiser que eu implemente:
+- fluxo de cadastro (signup) diretamente na UI,
+- melhorias estéticas no recibo (cores, tipografia, adicionar sua tipografia preferida),
+- incluir CNPJ/Endereço no recibo,
+diga qual e eu atualizo agora.

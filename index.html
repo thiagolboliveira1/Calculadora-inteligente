@@ -8,7 +8,28 @@
 </head>
 <body>
   <div class="card">
-    <h1>Calculadora de Comissão — Thiago Oliveira</h1>
+    <div class="header-row">
+      <div class="brand">
+        <img src="logo.png" alt="logo" class="logo-small"/>
+        <div>
+          <h1>Thiago Oliveira Designer de Interiores</h1>
+          <div class="tag">Recibos e Controle de Comissões</div>
+        </div>
+      </div>
+
+      <div class="auth" id="authPanel">
+        <div id="userInfo"></div>
+        <input id="email" type="email" placeholder="email" />
+        <input id="password" type="password" placeholder="senha" />
+        <div class="auth-actions">
+          <button id="btnSignIn" class="btn-auth">Entrar</button>
+          <button id="btnSignOut" class="btn-auth" style="display:none">Sair</button>
+        </div>
+        <div class="small">Salvamento requer login</div>
+      </div>
+    </div>
+
+    <hr/>
 
     <div class="row">
       <div class="col">
