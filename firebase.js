@@ -1,5 +1,4 @@
 // firebase.js
-// Insira seu firebaseConfig abaixo. Exporte `firebaseEnabled` e as funções para usar no app.
 export let firebaseEnabled = false;
 export let db = null;
 
@@ -15,7 +14,6 @@ const firebaseConfig = {
 async function init() {
   try {
     if (firebaseConfig && firebaseConfig.projectId && firebaseConfig.apiKey && firebaseConfig.appId) {
-      // usa SDK modular
       const mod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js');
       const fb = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js');
       mod.initializeApp(firebaseConfig);
@@ -29,8 +27,6 @@ async function init() {
     console.error('Erro ao inicializar Firebase:', e);
   }
 }
-
-// inicia automaticamente
 init();
 
 export function getDb() { return db; }
