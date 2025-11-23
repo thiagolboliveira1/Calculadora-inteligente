@@ -1,12 +1,15 @@
-Calculadora de Comissão - Recebimento/Recibo (Auth + Signup)
+Calculadora de Comissão - App-like (login first) - Pronto
 ================================================================================
-
-Esta versão adiciona fluxo de cadastro (signup) diretamente na UI.
+Arquivos:
+- index.html
+- styles.css
+- firebase.js (preenchido com seu firebaseConfig)
+- app.js
+- logo.png
 
 Como usar:
 1. Extraia o ZIP.
 2. Abra index.html no navegador.
-3. Em `firebase.js` preencha o objeto `firebaseConfig` do seu projeto.
-4. Habilite Firestore e Authentication (Email/Password) no console do Firebase.
-5. Cadastre um usuário usando o botão "Cadastrar" (signup) com email e senha.
-6. Após cadastro, você ficará autenticado automaticamente. Agora poderá salvar registros e ver histórico.
+3. Habilite Authentication (Email/Password) e Firestore no console Firebase.
+4. Crie usuário via botão "Cadastrar" ou pelo console.
+5. Faça login; a tela principal carregará como app.

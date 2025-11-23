@@ -1,48 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Merriweather:wght@300;700&display=swap');
-
-:root {
-  font-family: 'Nunito', Arial, sans-serif;
-  --card:#ffffff;
-  --bg:#f6f8fa;
-  --accent:#0b6b4f;
-  --accent-2:#2d6cdf;
-  --muted:#6b7280;
-  --receipt-bg: #ffffff;
-  --receipt-accent: #1f2937;
-}
-body { margin:0; background:linear-gradient(180deg,#f0f3f5, #f6f8fa); display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; color:var(--receipt-accent); }
-.card { width:100%; max-width:980px; background:var(--card); border-radius:12px; padding:20px; box-shadow:0 10px 30px rgba(15,23,42,0.08); }
-.header-row { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px; }
-.brand { display:flex; gap:12px; align-items:center; }
-.logo-small { width:110px; height:auto; object-fit:contain; }
-h1 { margin:0; font-size:18px; font-family: 'Merriweather', serif; color:var(--receipt-accent); }
-.tag { font-size:12px; color:var(--muted); margin-top:2px; }
-
-.auth { text-align:right; min-width:240px; }
-.auth input { width:100%; padding:8px; margin:4px 0; border-radius:6px; border:1px solid #e6e9ee; }
-.auth-actions { display:flex; gap:6px; justify-content:flex-end; }
-.btn-auth { padding:8px 10px; border-radius:6px; border:0; background:var(--accent); color:#fff; cursor:pointer; }
-
-.row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
-label{font-size:13px;color:var(--receipt-accent);margin-bottom:6px;display:block;}
-input[type="number"], input[type="text"], input[type="date"]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;font-size:16px;background:#fff;}
-.col{flex:1;min-width:180px;}
-.actions{display:flex;gap:10px;align-items:center;margin-top:10px;}
-button{padding:10px 16px;border-radius:8px;border:0;font-weight:600;cursor:pointer;}
-.btn-calc{background:var(--accent); color:white;}
-.btn-save{background:var(--accent-2);color:white;}
-.btn-clear{background:transparent;border:1px solid #ccc;}
-.btn-pdf{background:#6a2f9a;color:white;}
-.result{margin-top:14px;padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef5f7; box-shadow: 0 4px 12px rgba(13,20,25,0.03);}
-.small{font-size:13px;color:var(--muted);margin-top:6px;}
-.summary{margin-top:16px;}
-.message{margin-top:10px;font-size:14px;color:green;}
-@media (max-width:720px){ .header-row{flex-direction:column; align-items:flex-start;} .auth{text-align:left; width:100%;} .brand h1{font-size:16px;} }
-.monthly-list { max-height:200px; overflow:auto; border:1px solid #eef; border-radius:8px; padding:8px; margin-top:8px; background:#fff;}
-.monthly-item{display:flex;justify-content:space-between;padding:6px;border-bottom:1px solid #f1f5f8;}
-
-/* Receipt-specific print styles (keeps visual identity) */
-@media print {
-  body { background: #fff; }
-  .card { box-shadow:none; border:none; }
-}
+:root{--bg:#f4f6f8;--card:#fff;--accent:#0b6b4f;--accent2:#2d6cdf;--muted:#6b7280;}
+*{box-sizing:border-box}html,body,#app{height:100%;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#eef2f5,#f4f6f8);-webkit-font-smoothing:antialiased}
+.app-shell{max-width:980px;margin:18px auto;min-height:calc(100vh - 36px)}
+.screen{padding:12px}
+.auth-card{display:flex;flex-direction:column;align-items:center;padding:22px;border-radius:12px;background:var(--card);box-shadow:0 8px 24px rgba(12,20,30,0.06)}
+.logo-big{width:140px;margin-bottom:6px}
+.auth-card h2{margin:6px 0 12px;font-family:'Merriweather',serif}
+.auth-card input{width:100%;max-width:360px;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #e6e9ee}
+.auth-actions{display:flex;gap:8px;margin-top:8px}
+.btn{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer;font-weight:700}
+.btn.outline{background:#fff;border:1px solid var(--accent);color:var(--accent)}
+.btn.ghost{background:transparent;border:1px solid #ddd;color:var(--muted)}
+.btn.primary{background:var(--accent2)}
+.btn-sm{padding:6px 8px;border-radius:8px;background:#2d6cdf;color:#fff;border:0;cursor:pointer}
+.muted{color:var(--muted);font-size:13px;margin-top:8px}
+.footer-note{text-align:center;margin-top:12px;color:var(--muted)}
+.app-header{display:flex;justify-content:space-between;align-items:center;padding:12px 6px;background:linear-gradient(90deg,#fff,#fbfdff);border-radius:10px;box-shadow:0 6px 20px rgba(12,20,30,0.04)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo-small{width:64px}
+.brand-title{font-weight:700;font-family:'Merriweather',serif}
+.brand-sub{font-size:13px;color:var(--muted)}
+.header-actions{display:flex;gap:8px;align-items:center}
+.userInfo{font-size:13px;color:var(--muted)}
+.container{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+.card{background:var(--card);padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(12,20,30,0.04)}
+.form-card label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+.form-card input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee;margin-bottom:8px}
+.row.three{display:flex;gap:8px}
+.actions{display:flex;gap:8px;align-items:center;margin-top:6px}
+.result{background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;border-radius:8px;border:1px solid #eef5f7}
+.history-card .history-header{display:flex;justify-content:space-between;align-items:center}
+.monthly-list{max-height:220px;overflow:auto;margin-top:8px}
+.monthly-item{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #f1f5f8}
+.app-footer{text-align:center;margin-top:12px;color:var(--muted);font-size:13px}
+@media (max-width:720px){.app-shell{margin:0;border-radius:0;min-height:100vh}.logo-big{width:120px}.logo-small{width:48px}.auth-card input{max-width:100%}}

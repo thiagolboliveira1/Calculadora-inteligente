@@ -2,99 +2,106 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Calculadora de Comissão - Thiago Oliveira Designer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Thiago Oliveira — Comissões</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="card">
-    <div class="header-row">
-      <div class="brand">
-        <img src="logo.png" alt="logo" class="logo-small"/>
-        <div>
-          <h1>Thiago Oliveira Designer de Interiores</h1>
-          <div class="tag">Recibos e Controle de Comissões</div>
-        </div>
-      </div>
-
-      <div class="auth" id="authPanel">
-        <div id="userInfo"></div>
-        <input id="email" type="email" placeholder="email" />
-        <input id="password" type="password" placeholder="senha" />
+  <div id="app" class="app-shell">
+    <div id="loginScreen" class="screen">
+      <div class="card auth-card">
+        <img src="logo.png" alt="logo" class="logo-big"/>
+        <h2>Entrar / Cadastrar</h2>
+        <input id="email" type="email" placeholder="Email" />
+        <input id="password" type="password" placeholder="Senha" />
         <div class="auth-actions">
-          <button id="btnSignIn" class="btn-auth">Entrar</button>
-          <button id="btnSignUp" class="btn-auth">Cadastrar</button>
-          <button id="btnSignOut" class="btn-auth" style="display:none">Sair</button>
+          <button id="btnSignIn" class="btn">Entrar</button>
+          <button id="btnSignUp" class="btn btn-outline">Cadastrar</button>
         </div>
-        <div class="small">Salvamento requer login</div>
+        <div class="small muted">Use email e senha para acessar seu painel</div>
       </div>
+      <div class="footer-note">Thiago Oliveira Designer de Interiores</div>
     </div>
 
-    <hr/>
+    <div id="mainScreen" class="screen" style="display:none;">
+      <header class="app-header">
+        <div class="brand">
+          <img src="logo.png" class="logo-small" alt="logo"/>
+          <div>
+            <div class="brand-title">Thiago Oliveira</div>
+            <div class="brand-sub">Comissões & Recibos</div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div id="userInfo" class="userInfo">—</div>
+          <button id="btnSignOut" class="btn btn-sm">Sair</button>
+        </div>
+      </header>
 
-    <div class="row">
-      <div class="col">
-        <label>Valor total do serviço (R$)</label>
-        <input id="serviceValue" type="number" min="0" step="0.01" placeholder="ex: 1250.50" />
-      </div>
+      <main class="container">
+        <section class="card form-card">
+          <h3>Nova comissão</h3>
+          <div class="row">
+            <label>Valor total do serviço (R$)</label>
+            <input id="serviceValue" type="number" min="0" step="0.01" placeholder="ex: 1250.50" />
+          </div>
+          <div class="row three">
+            <div>
+              <label>% Comissão</label>
+              <input id="commissionPct" type="number" min="0" max="100" step="0.01" value="20" />
+            </div>
+            <div>
+              <label>Almoço (R$)</label>
+              <input id="expenseLunch" type="number" min="0" step="0.01" value="0" />
+            </div>
+            <div>
+              <label>Gasolina (R$)</label>
+              <input id="expenseGas" type="number" min="0" step="0.01" value="0" />
+            </div>
+          </div>
 
-      <div class="col">
-        <label>% Comissão</label>
-        <input id="commissionPct" type="number" min="0" max="100" step="0.01" value="20" />
-        <div class="small">Padrão: 20% (edite se necessário)</div>
-      </div>
+          <div class="row">
+            <label>Data</label>
+            <input id="date" type="date" />
+          </div>
+          <div class="row">
+            <label>Observações</label>
+            <input id="notes" type="text" placeholder="ex: entrega no cliente X" />
+          </div>
 
-      <div class="col">
-        <label>Despesa - Almoço (R$)</label>
-        <input id="expenseLunch" type="number" min="0" step="0.01" value="0" />
-      </div>
+          <div class="actions">
+            <button id="btnCalc" class="btn primary">Calcular</button>
+            <button id="btnSave" class="btn" disabled>Salvar</button>
+            <button id="btnPDF" class="btn outline">Exportar PDF (Recibo)</button>
+            <button id="btnClear" class="btn ghost">Limpar</button>
+          </div>
 
-      <div class="col">
-        <label>Despesa - Gasolina (R$)</label>
-        <input id="expenseGas" type="number" min="0" step="0.01" value="0" />
-      </div>
+          <div id="resultCard" class="result" style="display:none;">
+            <div><strong>Comissão bruta:</strong> R$ <span id="commissionValue">0.00</span></div>
+            <div><strong>Despesas:</strong> Almoço R$ <span id="dLunch">0.00</span> + Gasolina R$ <span id="dGas">0.00</span></div>
+            <div style="margin-top:8px;"><strong>Resultado líquido (à receber):</strong> R$ <span id="netValue">0.00</span></div>
+            <div class="small">Mês: <span id="monthKeyDisplay">-</span></div>
+          </div>
+        </section>
+
+        <section class="card history-card" id="monthlySummary" style="display:none;">
+          <div class="history-header">
+            <h4>Resumo do mês <span id="monthLabel"></span></h4>
+            <div class="history-actions">
+              <button id="btnRefresh" class="btn-sm">Atualizar</button>
+            </div>
+          </div>
+          <div id="monthlyTotals" class="totals">—</div>
+          <div id="monthlyList" class="monthly-list"></div>
+        </section>
+      </main>
+
+      <footer class="app-footer">© Thiago Oliveira — Thiago Oliveira Designer de Interiores</footer>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <label>Data do registro</label>
-        <input id="date" type="date" />
-      </div>
-      <div class="col">
-        <label>Observações</label>
-        <input id="notes" type="text" placeholder="ex: entrega casa do cliente X" />
-      </div>
-    </div>
-
-    <div class="actions">
-      <button id="btnCalc" class="btn-calc">Calcular</button>
-      <button id="btnSave" class="btn-save" disabled>Salvar no Banco</button>
-      <button id="btnPDF" class="btn-pdf">Exportar PDF (Recibo)</button>
-      <button id="btnClear" class="btn-clear">Limpar</button>
-      <div id="status" style="margin-left:auto"></div>
-    </div>
-
-    <div id="resultCard" class="result" style="display:none;">
-      <div><strong>Comissão bruta:</strong> R$ <span id="commissionValue">0.00</span></div>
-      <div><strong>Despesas:</strong> Almoço R$ <span id="dLunch">0.00</span> + Gasolina R$ <span id="dGas">0.00</span></div>
-      <div style="margin-top:8px;"><strong>Resultado líquido (à receber):</strong> R$ <span id="netValue">0.00</span></div>
-      <div class="small">Valor salvo por mês: <span id="monthKeyDisplay">-</span></div>
-    </div>
-
-    <div class="summary" id="monthlySummary" style="display:none;">
-      <h3>Resumo do mês <span id="monthLabel"></span></h3>
-      <div id="monthlyTotals">Carregando...</div>
-      <div class="monthly-list" id="monthlyList"></div>
-    </div>
-
-    <div id="msg" class="message"></div>
   </div>
 
-  <!-- Bibliotecas: jsPDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <!-- App scripts -->
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
