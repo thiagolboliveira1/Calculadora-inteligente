@@ -18,7 +18,7 @@ body { margin:0; background:linear-gradient(180deg,#f0f3f5, #f6f8fa); display:fl
 h1 { margin:0; font-size:18px; font-family: 'Merriweather', serif; color:var(--receipt-accent); }
 .tag { font-size:12px; color:var(--muted); margin-top:2px; }
 
-.auth { text-align:right; min-width:220px; }
+.auth { text-align:right; min-width:240px; }
 .auth input { width:100%; padding:8px; margin:4px 0; border-radius:6px; border:1px solid #e6e9ee; }
 .auth-actions { display:flex; gap:6px; justify-content:flex-end; }
 .btn-auth { padding:8px 10px; border-radius:6px; border:0; background:var(--accent); color:#fff; cursor:pointer; }

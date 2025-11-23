@@ -1,7 +1,7 @@
 // app.js
 import { getDb, getAuthInstance, isFirebaseEnabled } from './firebase.js';
 import { collection, addDoc, serverTimestamp, query, where, getDocs, orderBy } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
-import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
 
 const $ = id => document.getElementById(id);
 const svc = $('serviceValue');
@@ -29,6 +29,7 @@ const monthlyList = $('monthlyList');
 const emailInput = $('email');
 const passwordInput = $('password');
 const btnSignIn = $('btnSignIn');
+const btnSignUp = $('btnSignUp');
 const btnSignOut = $('btnSignOut');
 const userInfo = $('userInfo');
 
@@ -119,7 +120,22 @@ btnClear.addEventListener('click', () => {
   resetSaveState();
 });
 
-// auth handlers
+// signup handler
+btnSignUp.addEventListener('click', async () => {
+  const email = emailInput.value.trim();
+  const pass = passwordInput.value;
+  if (!email || !pass) { alert('Preencha email e senha para cadastro'); return; }
+  try {
+    const auth = getAuthInstance();
+    await createUserWithEmailAndPassword(auth, email, pass);
+    alert('Cadastro realizado com sucesso. Você será autenticado automaticamente.');
+  } catch (err) {
+    console.error(err);
+    alert('Erro no cadastro: ' + (err.message || err));
+  }
+});
+
+// sign-in handler
 btnSignIn.addEventListener('click', async () => {
   const email = emailInput.value.trim();
   const pass = passwordInput.value;
@@ -148,6 +164,7 @@ onAuthStateChanged(getAuthInstance(), user => {
     currentUser = user;
     userInfo.innerHTML = `<div>Olá, <strong>${user.email}</strong></div>`;
     btnSignIn.style.display = 'none';
+    btnSignUp.style.display = 'none';
     btnSignOut.style.display = 'inline-block';
     emailInput.style.display = 'none';
     passwordInput.style.display = 'none';
@@ -155,6 +172,7 @@ onAuthStateChanged(getAuthInstance(), user => {
     currentUser = null;
     userInfo.innerHTML = `<div><em>Não autenticado</em></div>`;
     btnSignIn.style.display = 'inline-block';
+    btnSignUp.style.display = 'inline-block';
     btnSignOut.style.display = 'none';
     emailInput.style.display = 'inline-block';
     passwordInput.style.display = 'inline-block';
